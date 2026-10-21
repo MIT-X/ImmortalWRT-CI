@@ -5,10 +5,6 @@ on:
   schedule:
     - cron: '0 0 1 * *'
 
-permissions:
-  contents: write
-  actions: read
-
 env:
   REPO_URL: https://github.com/VIKINGYFY/immortalwrt
   REPO_BRANCH: owrt
