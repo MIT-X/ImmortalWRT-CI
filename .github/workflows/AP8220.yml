@@ -65,12 +65,10 @@ jobs:
         upx-ucl unzip vim wget xmlto xxd zlib1g-dev zstd
 
     - name: 克隆固件源码
-      working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+  
     - name: 添加外部插件
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
