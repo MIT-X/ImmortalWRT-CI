@@ -82,6 +82,36 @@ jobs:
     - name: 读取外部插件
       run: cd openwrt && ./scripts/feeds install -a
 
+    - name: 映射修复补丁
+      working-directory: openwrt
+      run: |
+        set -euo pipefail
+
+        MINIUPNPD_COMMIT="99c39ee7476d1872b080ed486533e8520f3fdad3"
+        MINIUPNPD_URL="https://codeload.github.com/VIKINGYFY/immortalwrt/tar.gz/${MINIUPNPD_COMMIT}"
+        MINIUPNPD_TARGET="package/network/services/miniupnpd"
+
+        TMP="$(mktemp -d)"
+        trap 'rm -rf "$TMP"' EXIT
+
+        curl -fL --retry 3 "$MINIUPNPD_URL" -o "$TMP/source.tar.gz"
+        tar -xzf "$TMP/source.tar.gz" -C "$TMP"
+
+        SRC_ROOT="$(find "$TMP" -mindepth 1 -maxdepth 1 -type d -name 'immortalwrt-*' -print -quit)"
+        test -n "$SRC_ROOT"
+
+        SRC_PKG="$SRC_ROOT/package/network/services/miniupnpd"
+        test -d "$SRC_PKG"
+
+        rm -rf "$MINIUPNPD_TARGET"
+        cp -a "$SRC_PKG" "$MINIUPNPD_TARGET"
+
+        # 删除 feeds install 生成的旧入口，避免旧版 miniupnpd 参与编译
+        rm -rf package/feeds/packages/miniupnpd
+
+        test -f "$MINIUPNPD_TARGET/Makefile"
+        grep -E 'PKG_VERSION|PKG_SOURCE_URL' "$MINIUPNPD_TARGET/Makefile" || true
+
     - name: 加载个人设置
       run: |
         [ -e files ] && mv files openwrt/files
