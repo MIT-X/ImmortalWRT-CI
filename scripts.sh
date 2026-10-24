@@ -2,7 +2,7 @@
 #=========================================================================================================================
 
 # 1-添加 DAED 插件
-# git clone https://github.com/QiuSimons/luci-app-daed.git package/luci-app-daed
+git clone https://github.com/QiuSimons/luci-app-daed.git package/luci-app-daed
 
 # 2-添加 集客 插件
 git clone https://github.com/laipeng668/luci-app-gecoosac.git package/luci-app-gecoosac
