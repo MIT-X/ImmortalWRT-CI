@@ -81,6 +81,8 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        rm -rf feeds/luci/applications/luci-app-daed
+        git clone https://github.com/QiuSimons/luci-app-daed.git feeds/luci/applications/luci-app-daed
 
     - name: 加载个人设置
       run: |
