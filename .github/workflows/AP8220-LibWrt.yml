@@ -74,6 +74,11 @@ jobs:
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $Scripts
         cd openwrt
+        rm -rf feeds/luci/applications/luci-app-dae
+        rm -rf feeds/luci/applications/luci-app-daed
+        rm -rf package/*/dae package/*/daed package/*/luci-app-daede 2>/dev/null || true
+        rm -rf feeds/*/dae feeds/*/daed feeds/*/luci-app-daede 2>/dev/null || true
+        echo "src-git daede https://github.com/kenzok8/openwrt-daede.git" >> feeds.conf.default
         $GITHUB_WORKSPACE/$Scripts
       
     - name: 构建软件编译
