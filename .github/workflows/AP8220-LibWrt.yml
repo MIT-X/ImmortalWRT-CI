@@ -76,7 +76,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$Scripts
       
-    - name: 更新外部插件
+    - name: 构建软件编译
       working-directory: openwrt
       run: |
         ./scripts/feeds update -a
