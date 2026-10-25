@@ -75,13 +75,12 @@ jobs:
         chmod +x $Scripts
         cd openwrt
         $GITHUB_WORKSPACE/$Scripts
-
+      
     - name: 更新外部插件
-      run: cd openwrt && ./scripts/feeds update -a
-
-    - name: 读取外部插件
-      run: cd openwrt && ./scripts/feeds install -a
-
+      working-directory: openwrt
+      run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
 
     - name: 加载个人设置
       run: |
