@@ -79,12 +79,11 @@ jobs:
     - name: 构建软件编译
       working-directory: openwrt
       run: |
-        ./scripts/feeds update -a
+        ./scripts/feeds update -a -f
         rm -rf feeds/luci/applications/luci-app-dae
         rm -rf feeds/luci/applications/luci-app-daed
         rm -rf feeds/luci/applications/luci-app-passwall
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
+        ./scripts/feeds install -a -f
 
     - name: 加载个人设置
       run: |
