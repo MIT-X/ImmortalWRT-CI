@@ -12,7 +12,7 @@ else
 fi
 
 
-# 创建 uci-defaults 脚本：设置密码 + 主机名
+# 设置密码 + 主机名
 mkdir -p files/etc/uci-defaults
 cat <<EOF > files/etc/uci-defaults/99-set-root-password
 
