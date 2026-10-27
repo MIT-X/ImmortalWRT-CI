@@ -84,8 +84,6 @@ jobs:
         rm -rf feeds/luci/applications/luci-app-dae
         rm -rf feeds/luci/applications/luci-app-daed
         rm -rf feeds/luci/applications/luci-app-passwall
-        rm -rf feeds/packages/net/dae/
-        rm -rf feeds/packages/net/daed/
         rm -rf feeds/packages/net/xray-core/
         ./scripts/feeds install -a -f
 
