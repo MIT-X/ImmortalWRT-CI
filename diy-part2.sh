@@ -22,7 +22,7 @@ passwd root < /tmp/root_password.txt
 rm -f /tmp/root_password.txt
 
 # 修改默认主机名为 AP8220
-uci set system.@system[0].hostname='AP8220'
+uci set system.@system[0].hostname='ImmortalWRT'
 uci commit system
 exit 0
 EOF
