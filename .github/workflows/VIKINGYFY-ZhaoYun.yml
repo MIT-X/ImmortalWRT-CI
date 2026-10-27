@@ -80,11 +80,18 @@ jobs:
     - name: 构建软件编译
       working-directory: openwrt
       run: |
+        sed -i '/vikingyfy_packages/d' feeds.conf.default
         ./scripts/feeds update -a -f
         rm -rf feeds/luci/applications/luci-app-dae
         rm -rf feeds/luci/applications/luci-app-daed
         rm -rf feeds/luci/applications/luci-app-passwall
         ./scripts/feeds install -a -f
+        sed -i '1i src-git vikingyfy_packages https://github.com/VIKINGYFY/packages.git' feeds.conf.default
+        ./scripts/feeds update vikingyfy_packages
+        ./scripts/feeds uninstall miniupnpd || true
+        ./scripts/feeds uninstall luci-app-upnp || true
+        ./scripts/feeds install -p vikingyfy_packages miniupnpd
+        ./scripts/feeds install -p vikingyfy_packages luci-app-upnp
 
     - name: 加载个人设置
       run: |
