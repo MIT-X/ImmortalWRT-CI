@@ -21,8 +21,8 @@ echo -ne "Xiang!%1688@\nXiang!%1688@" > /tmp/root_password.txt
 passwd root < /tmp/root_password.txt
 rm -f /tmp/root_password.txt
 
-# 修改默认主机名为 ImmortalWRT
-uci set system.@system[0].hostname='ImmortalWRT'
+# 修改默认主机名为 ImmortalWrt
+uci set system.@system[0].hostname='ImmortalWrt'
 uci commit system
 exit 0
 EOF
