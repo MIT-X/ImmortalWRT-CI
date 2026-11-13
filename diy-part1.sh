@@ -1,4 +1,4 @@
-# 1-添加插件
+# 添加插件
 # git clone https://github.com/kenzok8/openwrt-daede.git package/openwrt-daede
 # git clone https://github.com/QiuSimons/luci-app-daed.git package/luci-app-daed
 # sed -i '1i src-git lanspeed https://github.com/qimaoww/luci-app-lanspeed.git;main' feeds.conf.default
